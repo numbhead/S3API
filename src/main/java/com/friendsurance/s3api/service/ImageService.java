@@ -1,6 +1,8 @@
 package com.friendsurance.s3api.service;
 
 import java.io.Serializable;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.friendsurance.s3api.model.Image;
 import com.friendsurance.s3api.repository.ImageRepository;
@@ -18,6 +20,7 @@ public class ImageService implements Serializable{
 	@Autowired
 	private ImageRepository imageRepo;
 	
+	private Map<String, String> errors = null;
 	
 	public void saveImageToDB(Image img)
 	{
@@ -26,6 +29,25 @@ public class ImageService implements Serializable{
 		} catch (Exception e) {
 			log.error(e);
 		}
+	}
+	
+	public Map<String, String> validateImage(Image image)
+	{
+		errors = new LinkedHashMap<>();
+		if(image.getName()==null || image.getName().isEmpty())
+			errors.put("name", "Name was empty");
+		if(image.getSourceLink()==null || image.getSourceLink().isEmpty())
+			errors.put("sourceLink", "Source Link was empty");
+		return errors;
+	}
+
+	
+	public Map<String, String> getErrors() {
+		return errors;
+	}
+
+	public void setErrors(Map<String, String> errors) {
+		this.errors = errors;
 	}
 
 }

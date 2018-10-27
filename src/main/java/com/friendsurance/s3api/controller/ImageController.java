@@ -35,19 +35,26 @@ public class ImageController {
 		try {
 			if(image != null) {
 				image.setDateOfStorage(date);
-				imgService.saveImageToDB(image);
-				return new ResponseEntity<>(image, HttpStatus.CREATED);
+				errors =  imgService.validateImage(image);
+					if(errors.size()==0)
+					{
+						imgService.saveImageToDB(image);
+						return new ResponseEntity<>(image, HttpStatus.CREATED);
+					}
+					else
+						return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
 			}
 			else
 			{
 				errors.put("null", "Image Object was null");
-				return new ResponseEntity<>(errors, HttpStatus.CONFLICT);
+				return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
 			}
 				
 		}
 		catch(Exception exp)
 		{
-			return new ResponseEntity(errors, HttpStatus.CONFLICT);
+			errors.put("exceptions", exp.getStackTrace().toString());
+			return new ResponseEntity<>(errors, HttpStatus.EXPECTATION_FAILED);
 		}
 	}
 	
