@@ -2,6 +2,7 @@ package com.friendsurance.s3api.service;
 
 import java.io.File;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
+import com.friendsurance.s3api.model.S3Image;
 
 @Service
 public class S3Service implements Serializable {
@@ -65,5 +67,19 @@ public class S3Service implements Serializable {
 				fileExist = true;
 		}
 		return fileExist;
+	}
+	
+	// Method to return all list of images from S3
+	public List<S3Image> getAllImageList(String bucketName) {
+		List<S3Image> imageList = new ArrayList<S3Image>();
+		S3Image s3Image = new S3Image();
+		ObjectListing objList = s3.listObjects(bucketName);
+		List<S3ObjectSummary> objects = objList.getObjectSummaries();
+		for (S3ObjectSummary objSummary : objects) {
+			s3Image.setImageName(objSummary.getKey());
+			s3Image.setImageS3Link("");
+			imageList.add(s3Image);
+		}
+		return imageList;
 	}
 }

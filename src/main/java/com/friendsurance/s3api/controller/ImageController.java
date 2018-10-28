@@ -3,6 +3,7 @@ package com.friendsurance.s3api.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.amazonaws.regions.Regions;
 import com.friendsurance.s3api.model.Image;
+import com.friendsurance.s3api.model.S3Image;
 import com.friendsurance.s3api.service.ImageService;
 import com.friendsurance.s3api.service.S3Service;
 import com.friendsurance.s3api.utilities.ApplicationConstants;
@@ -18,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
@@ -80,6 +83,11 @@ public class ImageController {
 			return new ResponseEntity<>(errors, HttpStatus.EXPECTATION_FAILED);
 		}
 	}
+	
+	@GetMapping(value = "/getAllImageList")
+	public List<S3Image> getAllImageList() {
+        return s3Service.getAllImageList(ApplicationConstants.BUCKETNAME);
+    }
 
 	public S3Service getS3Service() {
 		return s3Service;
