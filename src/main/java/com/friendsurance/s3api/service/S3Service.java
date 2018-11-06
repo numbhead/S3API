@@ -16,6 +16,7 @@ import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.friendsurance.s3api.model.S3Image;
+import com.friendsurance.s3api.utilities.ApplicationConstants;
 
 @Service
 public class S3Service implements Serializable {
@@ -56,6 +57,18 @@ public class S3Service implements Serializable {
 		}
 		return url;
 	}
+	
+	// Method to get the S3 image URLs from S3 Bucket
+	public String getS3URL(String bucketName, String keyName) {
+		String url = null;
+		try {
+			url = s3.getUrl(bucketName, keyName).toString();
+		} catch (AmazonServiceException ex) {
+			System.err.println(ex.getErrorMessage());
+			System.exit(1);
+		}
+		return url;
+	}
 
 	// Method to check if a file by the same name already exist
 	public boolean checkFileExistance(String bucketName, String fileName) {
@@ -72,12 +85,12 @@ public class S3Service implements Serializable {
 	// Method to return all list of images from S3
 	public List<S3Image> getAllImageList(String bucketName) {
 		List<S3Image> imageList = new ArrayList<S3Image>();
-		S3Image s3Image = new S3Image();
 		ObjectListing objList = s3.listObjects(bucketName);
 		List<S3ObjectSummary> objects = objList.getObjectSummaries();
 		for (S3ObjectSummary objSummary : objects) {
+			S3Image s3Image = new S3Image();
 			s3Image.setImageName(objSummary.getKey());
-			s3Image.setImageS3Link("");
+			s3Image.setImageS3Link(this.getS3URL(ApplicationConstants.BUCKETNAME, objSummary.getKey()));
 			imageList.add(s3Image);
 		}
 		return imageList;

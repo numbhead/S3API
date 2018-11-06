@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Image implements Serializable{
@@ -16,8 +15,7 @@ public class Image implements Serializable{
 	private static final long serialVersionUID = 5340548217025992023L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idGenerator")
-	@SequenceGenerator(name = "idGenerator", sequenceName = "s3api.IDGenerator", allocationSize = 1)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(unique = true, nullable = false)
