@@ -8,19 +8,11 @@ GRANT ALL PRIVILEGES ON * . * TO 's3api'@'localhost';
 
 CREATE TABLE `image` 
 (
-  
 `id` int(11) NOT NULL AUTO_INCREMENT,
-  
 `name` varchar(100) NOT NULL,
-  
 `source_link` varchar(300) NOT NULL,
-  
 `s3link` varchar(300) DEFAULT NULL,
-  
 `date_of_storage` datetime DEFAULT NULL,
-  
 PRIMARY KEY (`id`),
-  
 UNIQUE KEY `id_UNIQUE` (`id`)
-
 );
