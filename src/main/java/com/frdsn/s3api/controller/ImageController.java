@@ -1,4 +1,4 @@
-package com.friendsurance.s3api.controller;
+package com.frdsn.s3api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.amazonaws.regions.Regions;
-import com.friendsurance.s3api.model.Image;
-import com.friendsurance.s3api.model.S3Image;
-import com.friendsurance.s3api.service.ImageService;
-import com.friendsurance.s3api.service.S3Service;
-import com.friendsurance.s3api.utilities.ApplicationConstants;
+import com.frdsn.s3api.model.Image;
+import com.frdsn.s3api.model.S3Image;
+import com.frdsn.s3api.service.ImageService;
+import com.frdsn.s3api.service.S3Service;
+import com.frdsn.s3api.utilities.ApplicationConstants;
 
 import java.io.File;
 import java.io.IOException;

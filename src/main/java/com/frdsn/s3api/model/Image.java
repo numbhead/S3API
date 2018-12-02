@@ -1,4 +1,4 @@
-package com.friendsurance.s3api.model;
+package com.frdsn.s3api.model;
 
 import java.io.Serializable;
 import java.util.Date;

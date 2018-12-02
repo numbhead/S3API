@@ -1,4 +1,4 @@
-package com.friendsurance.s3api;
+package com.frdsn.s3api;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

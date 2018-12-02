@@ -1,4 +1,4 @@
-package com.friendsurance.s3api.service;
+package com.frdsn.s3api.service;
 
 import java.io.File;
 import java.io.Serializable;
@@ -15,8 +15,8 @@ import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
-import com.friendsurance.s3api.model.S3Image;
-import com.friendsurance.s3api.utilities.ApplicationConstants;
+import com.frdsn.s3api.model.S3Image;
+import com.frdsn.s3api.utilities.ApplicationConstants;
 
 @Service
 public class S3Service implements Serializable {

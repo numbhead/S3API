@@ -1,4 +1,4 @@
-package com.friendsurance.s3api.service;
+package com.frdsn.s3api.service;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,15 +13,16 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.friendsurance.s3api.model.Image;
-import com.friendsurance.s3api.model.S3Image;
-import com.friendsurance.s3api.repository.ImageRepository;
-import com.friendsurance.s3api.utilities.ApplicationConstants;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.frdsn.s3api.model.Image;
+import com.frdsn.s3api.model.S3Image;
+import com.frdsn.s3api.repository.ImageRepository;
+import com.frdsn.s3api.utilities.ApplicationConstants;
 
 @Service
 public class ImageService implements Serializable {

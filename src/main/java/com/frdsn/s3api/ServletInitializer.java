@@ -1,4 +1,4 @@
-package com.friendsurance.s3api;
+package com.frdsn.s3api;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

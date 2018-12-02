@@ -1,4 +1,4 @@
-package com.friendsurance.s3api.utilities;
+package com.frdsn.s3api.utilities;
 
 import java.util.Date;
 

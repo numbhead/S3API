@@ -1,4 +1,4 @@
-package com.friendsurance.s3api.model;
+package com.frdsn.s3api.model;
 
 public class S3Image {
 	
